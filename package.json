@@ -1,0 +1,22 @@
+{
+  "name": "jer-app",
+  "version": "0.0.0",
+  "devDependencies": {
+    "htm": "^3.1.1",
+    "prettier": "^3.6.2",
+    "typescript": "^5.5.2"
+  },
+  "private": true,
+  "scripts": {
+    "deploy": "npm run db:migrations:apply && wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "build": "tsc --noEmit",
+    "format": "prettier --write .",
+    "cf-typegen": "wrangler types && prettier --write worker-configuration.d.ts",
+    "db:migrations:apply": "wrangler d1 migrations apply DB --remote"
+  },
+  "dependencies": {
+    "wrangler": "^4.22.0"
+  }
+}

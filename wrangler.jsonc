@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jer-app",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-06-28",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "assets": {
+    "directory": "./public",
+  },
+  "observability": {
+    "enabled": true,
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "jer-app",
+      "database_id": "c788f6a3-e634-4ccf-9e39-e035024c9c85",
+    },
+  ],
+}

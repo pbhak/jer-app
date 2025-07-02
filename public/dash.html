@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="code/styles.css" />
+    <script type="module" src="code/main.js"></script>
+  </head>
+  <body>
+    <h1>
+      <script>
+        document.write(location.host)
+      </script>
+      dashboard
+    </h1>
+
+    <!-- Add Link Form -->
+    <section class="add-link-section">
+      <h2>Add New Link</h2>
+      <form id="add-link-form" autocomplete="off">
+        <div class="form-group">
+          <label for="path">Path:</label>
+          <p style="white-space: nowrap; width: 100%">
+            <script>
+              document.write(location.host)
+            </script>
+            /<input
+              type="text"
+              id="path"
+              name="path"
+              required
+              style="width: 20rem; padding: 0"
+            />
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="type">Link Type:</label>
+          <select id="type" name="type" required>
+            <option value="">Select a type...</option>
+            <option value="redirect">Redirect</option>
+            <option value="file">File</option>
+            <option value="text">Text</option>
+          </select>
+        </div>
+
+        <!-- Redirect-specific fields -->
+        <div id="redirect-fields" style="display: none">
+          <div class="form-group">
+            <label for="url">URL:</label>
+            <input
+              type="url"
+              id="url"
+              name="url"
+              placeholder="https://example.com"
+            />
+          </div>
+        </div>
+
+        <!-- File-specific fields -->
+        <div id="file-fields" style="display: none">
+          <div class="form-group" id="file-input-group" style="display: none">
+            <label for="file">File:</label>
+            <input type="file" id="file" name="file" />
+          </div>
+          <div class="form-group" id="text-input-group" style="display: none">
+            <label for="text">Text:</label>
+            <textarea
+              id="text"
+              name="text"
+              rows="5"
+              placeholder="Enter text content here"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="location">Location:</label>
+            <select id="location" name="location">
+              <option value="">Select a location...</option>
+              <option value="inline">Inline in DB (5gb total, fast)</option>
+              <option value="catbox">Catbox (200mb, forever)</option>
+              <option value="litterbox">Litterbox (1gb, 72h)</option>
+              <option value="gofile">
+                Gofile (unlimited, temporary, slow)
+              </option>
+              <option value="hc-cdn">Hack Club CDN (70kb, forever)</option>
+            </select>
+            <small>Where to store the file?</small>
+          </div>
+          <div class="form-group">
+            <label for="filename">Filename (optional):</label>
+            <input type="text" id="filename" name="filename" />
+            <small id="filename-help"
+              >Leave empty to use the original filename</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="content-type">Content-type (optional):</label>
+            <input
+              type="text"
+              id="content-type"
+              name="content-type"
+              list="content-types"
+              placeholder="text/plain"
+            />
+            <small id="content-type-help"
+              >Defaults to text/plain for text content, browser-provided for
+              files</small
+            >
+            <datalist id="content-types">
+              <option value="text/plain"></option>
+              <option value="text/html"></option>
+              <option value="text/css"></option>
+              <option value="application/javascript"></option>
+              <option value="text/javascript"></option>
+              <option value="image/svg+xml"></option>
+              <option value="application/json"></option>
+              <option value="application/octet-stream"></option>
+              <option value="application/pdf"></option>
+              <option value="image/png"></option>
+              <option value="image/jpeg"></option>
+              <option value="image/gif"></option>
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="download">
+              <input type="checkbox" id="download" name="download" />
+              Force download
+            </label>
+            <small>Check to force download instead of viewing in browser</small>
+          </div>
+        </div>
+
+        <button type="submit">Create Link</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Links</h2>
+      <div class="links-table-wrapper">
+        <table class="links-table">
+          <thead>
+            <tr>
+              <th>Path</th>
+              <th>Type</th>
+              <th>Value</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="links-tbody">
+            <tr>
+              <td colspan="4" style="text-align: center; color: #666">
+                Loading links...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>
